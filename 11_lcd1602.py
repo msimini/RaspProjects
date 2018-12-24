@@ -55,25 +55,25 @@ class Adafruit_CharLCD:
 
 
  def __init__(self, pin_rs=24, pin_e=23, pins_db=[17, 18, 27, 22], GPIO = None):
-	# Emulate the old behavior of using RPi.GPIO if we haven't been given
-	# an explicit GPIO interface to use
-	if not GPIO:
-	 import RPi.GPIO as GPIO
-   	self.GPIO = GPIO
-    self.pin_rs = pin_rs
-    self.pin_e = pin_e
-    self.pins_db = pins_db
+    # Emulate the old behavior of using RPi.GPIO if we haven't been given
+    # an explicit GPIO interface to use
+  if not GPIO:
+   import RPi.GPIO as GPIO
+ self.GPIO = GPIO
+ self.pin_rs = pin_rs
+ self.pin_e = pin_e
+ self.pins_db = pins_db
 
-    self.GPIO.setwarnings(False)
-    self.GPIO.setmode(GPIO.BCM)
-    self.GPIO.setup(self.pin_e, GPIO.OUT)
-    self.GPIO.setup(self.pin_rs, GPIO.OUT)
+ self.GPIO.setwarnings(False)
+ self.GPIO.setmode(GPIO.BCM)
+ self.GPIO.setup(self.pin_e, GPIO.OUT)
+ self.GPIO.setup(self.pin_rs, GPIO.OUT)
 
-  for pin in self.pins_db:
-    self.GPIO.setup(pin, GPIO.OUT)
+ for pin in self.pins_db:
+  self.GPIO.setup(pin, GPIO.OUT)
 
-	self.write4bits(0x33) # initialization
-	self.write4bits(0x32) # initialization
+ self.write4bits(0x33) # initialization
+ self.write4bits(0x32) # initialization
 	self.write4bits(0x28) # 2 line 5x7 matrix
 	self.write4bits(0x0C) # turn cursor off 0x0E to enable cursor
 	self.write4bits(0x06) # shift cursor right
@@ -223,10 +223,10 @@ class Adafruit_CharLCD:
         self.GPIO.output(pin, False)
 
     for i in range(4,8):
-    if bits[i] == "1":
+      if bits[i] == "1":
         self.GPIO.output(self.pins_db[::-1][i-4], True)
 
-        self.pulseEnable()
+     self.pulseEnable()
 
 
  def delayMicroseconds(self, microseconds):

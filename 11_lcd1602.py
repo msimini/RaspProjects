@@ -57,8 +57,8 @@ class Adafruit_CharLCD:
  def __init__(self, pin_rs=24, pin_e=23, pins_db=[17, 18, 27, 22], GPIO = None):
     # Emulate the old behavior of using RPi.GPIO if we haven't been given
     # an explicit GPIO interface to use
- if not GPIO:
-  import RPi.GPIO as GPIO
+  if not GPIO:
+   import RPi.GPIO as GPIO
  self.GPIO = GPIO
  self.pin_rs = pin_rs
  self.pin_e = pin_e
@@ -92,10 +92,10 @@ class Adafruit_CharLCD:
 
  def begin(self, cols, lines):
 
- if (lines > 1):
-  self.numlines = lines
-  self.displayfunction |= self.LCD_2LINE
-  self.currline = 0
+  if (lines > 1):
+   self.numlines = lines
+   self.displayfunction |= self.LCD_2LINE
+   self.currline = 0
 
 
  def home(self):

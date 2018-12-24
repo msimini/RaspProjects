@@ -59,35 +59,35 @@ class Adafruit_CharLCD:
     # an explicit GPIO interface to use
   if not GPIO:
    import RPi.GPIO as GPIO
- self.GPIO = GPIO
- self.pin_rs = pin_rs
- self.pin_e = pin_e
- self.pins_db = pins_db
+  self.GPIO = GPIO
+  self.pin_rs = pin_rs
+  self.pin_e = pin_e
+  self.pins_db = pins_db
 
- self.GPIO.setwarnings(False)
- self.GPIO.setmode(GPIO.BCM)
- self.GPIO.setup(self.pin_e, GPIO.OUT)
- self.GPIO.setup(self.pin_rs, GPIO.OUT)
+  self.GPIO.setwarnings(False)
+  self.GPIO.setmode(GPIO.BCM)
+  self.GPIO.setup(self.pin_e, GPIO.OUT)
+  self.GPIO.setup(self.pin_rs, GPIO.OUT)
 
- for pin in self.pins_db:
-  self.GPIO.setup(pin, GPIO.OUT)
+  for pin in self.pins_db:
+   self.GPIO.setup(pin, GPIO.OUT)
 
- self.write4bits(0x33) # initialization
- self.write4bits(0x32) # initialization
- self.write4bits(0x28) # 2 line 5x7 matrix
- self.write4bits(0x0C) # turn cursor off 0x0E to enable cursor
- self.write4bits(0x06) # shift cursor right
+  self.write4bits(0x33) # initialization
+  self.write4bits(0x32) # initialization
+  self.write4bits(0x28) # 2 line 5x7 matrix
+  self.write4bits(0x0C) # turn cursor off 0x0E to enable cursor
+  self.write4bits(0x06) # shift cursor right
 
- self.displaycontrol = self.LCD_DISPLAYON | self.LCD_CURSOROFF | self.LCD_BLINKOFF
+  self.displaycontrol = self.LCD_DISPLAYON | self.LCD_CURSOROFF | self.LCD_BLINKOFF
 
- self.displayfunction = self.LCD_4BITMODE | self.LCD_1LINE | self.LCD_5x8DOTS
- self.displayfunction |= self.LCD_2LINE
+  self.displayfunction = self.LCD_4BITMODE | self.LCD_1LINE | self.LCD_5x8DOTS
+  self.displayfunction |= self.LCD_2LINE
 
- """ Initialize to default text direction (for romance languages) """
- self.displaymode =  self.LCD_ENTRYLEFT | self.LCD_ENTRYSHIFTDECREMENT
- self.write4bits(self.LCD_ENTRYMODESET | self.displaymode) #  set the entry mode
+  """ Initialize to default text direction (for romance languages) """
+  self.displaymode =  self.LCD_ENTRYLEFT | self.LCD_ENTRYSHIFTDECREMENT
+  self.write4bits(self.LCD_ENTRYMODESET | self.displaymode) #  set the entry mode
 
- self.clear()
+  self.clear()
 
 
  def begin(self, cols, lines):
@@ -254,16 +254,14 @@ class Adafruit_CharLCD:
 
 def loop():
  lcd = Adafruit_CharLCD()
-  while True:
+ while True:
    lcd.clear()
-   lcd.message(" LCD 1602 Test \n123456789ABCDEF")
+   lcd.message("Vai Corinthians!\n       :)")
    sleep(2)
    lcd.clear()
-   lcd.message("   Hello, geeks !\nHello World ! :)")
+   lcd.message(" FELIZ NATAL ! \n     ho ho ho")
    sleep(2)
-   lcd.clear()
-   lcd.message("Welcom to --->\n  adeept.com")
-   sleep(2)
+
 
 if __name__ == '__main__':
 	loop()

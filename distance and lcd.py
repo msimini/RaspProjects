@@ -8,6 +8,9 @@
 
 from time import sleep
 
+import RPi.GPIO as GPIO
+import time
+
 class Adafruit_CharLCD:
 
  # commands
@@ -251,32 +254,32 @@ class Adafruit_CharLCD:
     self.write4bits(0xC0) # next line
    else:
     self.write4bits(ord(char),True)
+    
+
+
 
 def loop():
  lcd = Adafruit_CharLCD()
  #Setup de medidor de distancia
- GPIO.setmode(GPIO.BOARD)
- GPIO.setup(31,GPIO.OUT,initial=GPIO.LOW)
- GPIO.setup(29,GPIO.IN)
+ GPIO.setup(6,GPIO.OUT,initial=GPIO.LOW)
+ GPIO.setup(5,GPIO.IN)
  time.sleep(2)
  while True:
    lcd.clear()
+   print ('Distance: %0.2f m' %checkdist())
    lcd.message('Distance: %0.2f m' %checkdist())
-   sleep(2)
-   lcd.clear()
-   lcd.message(" FELIZ NATAL ! \n     ho ho ho")
-   sleep(2)
+   time.sleep(1)
 
 
 def checkdist():
- GPIO.output(31, GPIO.HIGH)
+ GPIO.output(6, GPIO.HIGH)
  time.sleep(0.000015)
- GPIO.output(31, GPIO.LOW)
- while not GPIO.input(29):
+ GPIO.output(6, GPIO.LOW)
+ while not GPIO.input(5):
   pass
  t1 = time.time()
- while GPIO.input(29):
- pass
+ while GPIO.input(5):
+  pass
  t2 = time.time()
  return (t2-t1)*340/2
 
